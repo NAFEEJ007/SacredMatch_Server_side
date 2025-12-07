@@ -11,7 +11,12 @@ const port = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  origin: [
+    'http://localhost:5173', 
+    'http://localhost:5174',
+    'https://sacredmatch-client.vercel.app', // Example: Replace with your actual client URL
+    /\.vercel\.app$/ // Allow all Vercel subdomains (useful for testing)
+  ],
   credentials: true
 }));
 app.use(express.json());
