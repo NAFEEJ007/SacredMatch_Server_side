@@ -34,6 +34,17 @@ const client = new MongoClient(uri, {
   }
 });
 
+// Ensure DB Connection Middleware
+app.use(async (req, res, next) => {
+  try {
+    await client.connect();
+    next();
+  } catch (error) {
+    console.error("Database connection failed:", error);
+    res.status(500).send({ message: "Database connection failed", error: error.message });
+  }
+});
+
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
     
