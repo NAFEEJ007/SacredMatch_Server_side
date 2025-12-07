@@ -14,8 +14,9 @@ app.use(cors({
   origin: [
     'http://localhost:5173', 
     'http://localhost:5174',
-    'https://sacredmatch-client.vercel.app', // Example: Replace with your actual client URL
-    /\.vercel\.app$/ // Allow all Vercel subdomains (useful for testing)
+    'https://sacredmatch-client.vercel.app',
+    'https://sacredmatch-e8a72.web.app',
+    'https://sacredmatch-e8a72.firebaseapp.com'
   ],
   credentials: true
 }));
