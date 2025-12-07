@@ -1,0 +1,36 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@stripe/react-stripe-js": "^5.4.1",
+    "@stripe/stripe-js": "^8.5.3",
+    "@tanstack/react-query": "^5.90.12",
+    "autoprefixer": "^10.4.22",
+    "axios": "^1.13.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "firebase": "^12.6.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.0.0",
+    "nodemon": "^3.1.11",
+    "postcss": "^8.5.6",
+    "react-hook-form": "^7.68.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.10.1",
+    "stripe": "^20.0.0",
+    "sweetalert2": "^11.26.4",
+    "tailwindcss": "^4.1.17"
+  }
+}
