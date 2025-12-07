@@ -59,13 +59,16 @@ app.use(async (req, res, next) => {
     app.post('/jwt', async (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+      
+      const isProduction = process.env.NODE_ENV === 'production';
+      
       res
         .cookie('token', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', 
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+            secure: isProduction, 
+            sameSite: isProduction ? 'none' : 'strict',
         })
-        .send({ success: true });
+        .send({ success: true, token });
     });
 
     app.post('/logout', async (req, res) => {
@@ -76,7 +79,16 @@ app.use(async (req, res, next) => {
 
     // Middlewares
     const verifyToken = (req, res, next) => {
-        const token = req.cookies?.token;
+        let token = req.cookies?.token;
+        
+        // Fallback to Authorization header
+        if (!token && req.headers.authorization) {
+            const authHeader = req.headers.authorization;
+            if (authHeader.startsWith('Bearer ')) {
+                token = authHeader.split(' ')[1];
+            }
+        }
+
         if (!token) {
             return res.status(401).send({ message: 'unauthorized access' });
         }
